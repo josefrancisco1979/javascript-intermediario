@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo de Média</title>
+</head>
+<body>
+    <h2>Cálculo de Média dos Alunos</h2>
+    <button onclick="calcularMedia()">Iniciar</button>
+
+    <h3>Resultados:</h3>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularMedia() {
+            let resultadoFinal = "";
+
+            for (let i = 1; i <= 5; i++) {
+                let nome = prompt(`Digite o nome do aluno ${i}:`);
+                let somaNotas = 0;
+
+                for (let j = 1; j <= 3; j++) {
+                    let nota = parseFloat(prompt(`Digite a nota ${j} de ${nome}:`));
+                    if (!isNaN(nota) && nota >= 0 && nota <= 10) {
+                        somaNotas += nota;
+                    } else {
+                        alert("Nota inválida! Insira um valor entre 0 e 10.");
+                        j--; // Volta uma tentativa para corrigir a nota inválida
+                    }
+                }
+
+                let media = somaNotas / 3;
+                let status = media >= 7 ? "Aprovado" : "Reprovado";
+
+                resultadoFinal += `${nome}: Média ${media.toFixed(2)} - ${status}\n`;
+            }
+
+            document.getElementById("resultado").innerText = resultadoFinal;
+            alert("Cálculo finalizado! Confira os resultados na tela.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Estoque</title>
+</head>
+<body>
+    <h2>Controle de Estoque</h2>
+    <button onclick="gerenciarEstoque()">Iniciar Controle</button>
+
+    <p>Estoque atual: <span id="estoque">100</span> unidades</p>
+
+    <script>
+        let estoque = 100; // Estoque inicial
+
+        function gerenciarEstoque() {
+            let opcao;
+
+            while (opcao !== "4") {
+                opcao = prompt("Escolha uma opção:\n1. Entrada de produto\n2. Saída de produto\n3. Verificar estoque\n4. Sair");
+
+                switch (opcao) {
+                    case "1":
+                        let entrada = parseInt(prompt("Quantas unidades deseja adicionar?"));
+                        if (!isNaN(entrada) && entrada > 0) {
+                            estoque += entrada;
+                        } else {
+                            alert("Entrada inválida!");
+                        }
+                        break;
+                    case "2":
+                        let saida = parseInt(prompt("Quantas unidades deseja remover?"));
+                        if (!isNaN(saida) && saida > 0 && saida <= estoque) {
+                            estoque -= saida;
+                        } else {
+                            alert("Saída inválida!");
+                        }
+                        break;
+                    case "3":
+                        alert(`Estoque atual: ${estoque} unidades`);
+                        break;
+                    case "4":
+                        alert("Saindo do sistema...");
+                        break;
+                    default:
+                        alert("Opção inválida! Tente novamente.");
+                }
+
+                document.getElementById("estoque").innerText = estoque; // Atualiza o estoque na tela
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisa de Satisfação</title>
+</head>
+<body>
+    <h2>Pesquisa de Satisfação</h2>
+    <button onclick="coletarNotas()">Iniciar Pesquisa</button>
+
+    <h3>Resultados:</h3>
+    <p>Ruim (0–4): <span id="ruim">0</span></p>
+    <p>Regular (5–7): <span id="regular">0</span></p>
+    <p>Ótimo (8–10): <span id="otimo">0</span></p>
+
+    <script>
+        function coletarNotas() {
+            let ruim = 0, regular = 0, otimo = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                let nota = parseInt(prompt(`Cliente ${i}, digite sua nota (0 a 10):`));
+
+                switch (true) {
+                    case (nota >= 0 && nota <= 4):
+                        ruim++;
+                        break;
+                    case (nota >= 5 && nota <= 7):
+                        regular++;
+                        break;
+                    case (nota >= 8 && nota <= 10):
+                        otimo++;
+                        break;
+                    default:
+                        alert("Nota inválida! Insira um valor entre 0 e 10.");
+                        i--; // Volta uma iteração para corrigir a nota inválida
+                }
+            }
+
+            document.getElementById("ruim").innerText = ruim;
+            document.getElementById("regular").innerText = regular;
+            document.getElementById("otimo").innerText = otimo;
+
+            alert("Pesquisa concluída! Confira os resultados na página.");
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificação de Número na Lista</title>
+</head>
+<body>
+    <h2>Verificar se um número está na lista</h2>
+    
+    <label>Digite um número:</label>
+    <input type="number" id="numero">
+    <button onclick="verificarNumero()">Verificar</button>
+
+    <h3>Resultado:</h3>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarNumero() {
+            let lista = [12, 25, 37, 49, 56, 68, 72, 84, 91, 100]; // Lista de 10 números
+            let numero = parseInt(document.getElementById("numero").value);
+            let encontrado = false;
+
+            for (let i = 0; i < lista.length; i++) {
+                if (lista[i] === numero) {
+                    encontrado = true;
+                    break; // Se encontrar o número, não precisa continuar verificando
+                }
+            }
+
+            document.getElementById("resultado").innerText = encontrado 
+                ? `O número ${numero} está na lista!` 
+                : `O número ${numero} não está na lista.`;
+        }
+    </script>
+</body>
+</html>

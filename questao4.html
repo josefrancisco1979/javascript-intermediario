@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Números Primos</title>
+</head>
+<body>
+    <h2>Verificação de Números Primos</h2>
+    
+    <label>Início do intervalo:</label>
+    <input type="number" id="inicio">
+    
+    <label>Fim do intervalo:</label>
+    <input type="number" id="fim">
+    
+    <button onclick="verificarPrimos()">Verificar</button>
+
+    <h3>Números primos encontrados:</h3>
+    <p id="resultado"></p>
+
+    <script>
+        function verificarPrimos() {
+            let inicio = parseInt(document.getElementById("inicio").value);
+            let fim = parseInt(document.getElementById("fim").value);
+            let primos = "";
+
+            for (let num = inicio; num <= fim; num++) {
+                if (num < 2) continue; // Números menores que 2 não são primos
+                let primo = true;
+
+                for (let divisor = 2; divisor < num; divisor++) {
+                    if (num % divisor === 0) {
+                        primo = false;
+                        break; // Se for divisível por outro número além de 1 e ele mesmo, não é primo
+                    }
+                }
+
+                if (primo) primos += num + " ";
+            }
+
+            document.getElementById("resultado").innerText = primos || "Nenhum número primo encontrado";
+        }
+    </script>
+</body>
+</html>

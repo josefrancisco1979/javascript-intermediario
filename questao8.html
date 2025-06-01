@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Análise de Vendas</title>
+</head>
+<body>
+    <h2>Análise de Vendas Semanais</h2>
+    <button onclick="analisarVendas()">Analisar Vendas</button>
+
+    <h3>Resultados:</h3>
+    <p>Total vendido: <span id="total"></span></p>
+    <p>Média de vendas: <span id="media"></span></p>
+    <p>Dias com vendas acima de 300: <span id="acima300"></span></p>
+
+    <script>
+        function analisarVendas() {
+            let vendas = [100, 250, 300, 50, 400, 700, 150];
+            let total = 0, acima300 = 0;
+
+            for (let venda of vendas) {
+                total += venda;
+                if (venda > 300) {
+                    acima300++;
+                }
+            }
+
+            let media = total / vendas.length;
+
+            document.getElementById("total").innerText = total;
+            document.getElementById("media").innerText = media.toFixed(2);
+            document.getElementById("acima300").innerText = acima300;
+        }
+    </script>
+</body>
+</html>

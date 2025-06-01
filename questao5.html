@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Fila de Atendimento</title>
+</head>
+<body>
+    <h2>Fila de Atendimento</h2>
+    <button onclick="gerenciarFila()">Iniciar Atendimento</button>
+
+    <h3>Fila atual:</h3>
+    <p id="fila"></p>
+
+    <script>
+        let fila = []; // Array para armazenar as pessoas na fila
+
+        function gerenciarFila() {
+            let opcao;
+
+            while (opcao !== "4") {
+                opcao = prompt("Escolha uma opção:\n1. Adicionar pessoa à fila\n2. Atender próxima pessoa\n3. Mostrar fila atual\n4. Sair");
+
+                switch (opcao) {
+                    case "1":
+                        let nome = prompt("Informe o nome da pessoa:");
+                        if (nome) {
+                            fila.push(nome); // Adiciona ao final da fila
+                        }
+                        break;
+                    case "2":
+                        if (fila.length > 0) {
+                            alert(`Atendendo: ${fila.shift()}`); // Remove a primeira pessoa da fila
+                        } else {
+                            alert("Nenhuma pessoa na fila!");
+                        }
+                        break;
+                    case "3":
+                        alert(`Fila atual: ${fila.length > 0 ? fila.join(", ") : "Vazia"}`);
+                        break;
+                    case "4":
+                        alert("Encerrando atendimento...");
+                        break;
+                    default:
+                        alert("Opção inválida! Tente novamente.");
+                }
+
+                document.getElementById("fila").innerText = fila.length > 0 ? fila.join(", ") : "Fila vazia";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação Etária</title>
+</head>
+<body>
+    <h2>Cadastro de Idades</h2>
+
+    <!-- Campo para o usuário inserir a quantidade de pessoas a serem cadastradas -->
+    <label for="quantidade">Quantas pessoas deseja cadastrar?</label>
+    <input type="number" id="quantidade">
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <!-- Div onde os campos para inserção de idades serão adicionados dinamicamente -->
+    <div id="entradaIdades"></div>
+    <button onclick="classificar()">Classificar</button>
+
+    <!-- Exibição dos resultados -->
+    <h3>Resultados:</h3>
+    <p>Crianças: <span id="criancas">0</span></p>
+    <p>Adolescentes: <span id="adolescentes">0</span></p>
+    <p>Adultos: <span id="adultos">0</span></p>
+    <p>Idosos: <span id="idosos">0</span></p>
+
+    <script>
+        let idades = []; // Array para armazenar as idades inseridas
+
+        function cadastrar() {
+            // Obtém a quantidade de pessoas informada pelo usuário
+            const quantidade = document.getElementById("quantidade").value;
+            const entradaIdades = document.getElementById("entradaIdades");
+            entradaIdades.innerHTML = ""; // Limpa o conteúdo anterior
+            idades = []; // Reseta o array de idades
+
+            // Cria campos de entrada para cada idade
+            for (let i = 0; i < quantidade; i++) {
+                entradaIdades.innerHTML += `<label>Idade da pessoa ${i+1}:</label> 
+                                            <input type="number" id="idade${i}"><br>`;
+            }
+        }
+
+        function classificar() {
+            // Inicializa os contadores de cada faixa etária
+            let criancas = 0, adolescentes = 0, adultos = 0, idosos = 0;
+
+            const quantidade = document.getElementById("quantidade").value;
+
+            // Percorre os campos de idade e classifica cada uma delas
+            for (let i = 0; i < quantidade; i++) {
+                let idade = parseInt(document.getElementById(`idade${i}`).value);
+                if (idade <= 12) criancas++;
+                else if (idade <= 17) adolescentes++;
+                else if (idade <= 59) adultos++;
+                else idosos++;
+            }
+
+            // Atualiza os resultados na tela
+            document.getElementById("criancas").innerText = criancas;
+            document.getElementById("adolescentes").innerText = adolescentes;
+            document.getElementById("adultos").innerText = adultos;
+            document.getElementById("idosos").innerText = idosos;
+        }
+    </script>
+</body>
+</html>
